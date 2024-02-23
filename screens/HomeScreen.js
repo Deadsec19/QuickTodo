@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: 10,
   },
   progressBar: {
     width: '100%',
