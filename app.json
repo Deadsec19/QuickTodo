@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "todo",
+    "slug": "snack-31dc10ed-2b49-43e1-8c2f-e849621b358c",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.devangp084.snack31dc10ed2b4943e18c2fe849621b358c"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": "this is an todo app",
+    "extra": {
+      "eas": {
+        "projectId": "f8b801fa-412f-44a6-89d3-c1450c6ae34a"
+      }
+    }
+  }
+}
