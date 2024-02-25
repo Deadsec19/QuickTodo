@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import AddTaskScreen from './screens/AddTaskScreen';
+import { LocalizationProvider } from './LocalizationContext';
+import LanguagePicker from './LanguagePicker';
 
 const Stack = createStackNavigator();
 
@@ -16,5 +18,16 @@ function App() {
     </NavigationContainer>
   );
 }
+
+const App = () => {
+  return (
+    <LocalizationProvider>
+      <LanguagePicker />
+      {/* Your existing app content here */}
+    </LocalizationProvider>
+  );
+};
+
+
 
 export default App;

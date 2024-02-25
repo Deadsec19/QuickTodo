@@ -5,9 +5,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Checkbox } from 'react-native-paper';
 import { Audio } from 'expo-av';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LocalizationContext } from './LocalizationContext';
+
+const { t } = React.useContext(LocalizationContext);
+
+// Example usage:
+<>
+  // Example usage:
+  <Text>{t('greeting')}</Text><Text>{t('farewell')}</Text></>
 
 
-const HomeScreen = () => {
+function HomeScreen() {
   const [tasks, setTasks] = useState([
     { id: 1, title: 'Welcome to Your Todo List!', completed: false },
     { id: 2, title: 'Start Adding Tasks Here!', completed: false },
@@ -90,8 +98,7 @@ const HomeScreen = () => {
             status={item.completed ? 'checked' : 'unchecked'}
             onPress={() => toggleCompletion(item.id)}
             color="#CDFADB"
-            uncheckedColor="black"
-          />
+            uncheckedColor="black" />
         </View>
       </TouchableOpacity>
     </Swipeable>
@@ -110,8 +117,7 @@ const HomeScreen = () => {
   };
 
   const toggleCompletion = (taskId) => {
-    setTasks(tasks.map(task =>
-      task.id === taskId ? { ...task, completed: !task.completed } : task
+    setTasks(tasks.map(task => task.id === taskId ? { ...task, completed: !task.completed } : task
     ));
 
     const allCompleted = tasks.every(task => task.completed);
@@ -145,8 +151,7 @@ const HomeScreen = () => {
         style={styles.flatList}
         data={tasks}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={renderTask}
-      />
+        renderItem={renderTask} />
 
       <View style={styles.inputContainer}>
         <TextInput
@@ -154,15 +159,14 @@ const HomeScreen = () => {
           value={newTask}
           onChangeText={setNewTask}
           placeholder="Enter a new task"
-          selectionColor="grey"
-        />
+          selectionColor="grey" />
         <TouchableOpacity style={styles.addButton} onPress={addTask}>
           <Icon name="plus" size={20} color="black" />
         </TouchableOpacity>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
