@@ -2,7 +2,7 @@
 
 Quick Todo is a simple and intuitive todo list application for managing your tasks efficiently. With Quick Todo, you can easily add, delete, and complete tasks, ensuring that you stay organized and productive.
 
-<img src="https://github.com/Deadsec19/QuickTodo/assets/90950290/7130646a-56a1-4286-828e-10c76a71a729" alt="Screenshot_20240226_150458_Expo Go" width="400">
+<img src="https://github.com/Deadsec19/QuickTodo/assets/90950290/53eccf73-cd99-41f1-9b7a-a14a7b2a8e1e" alt="Untitled design (4)" width="400">
 <img src="https://github.com/Deadsec19/QuickTodo/assets/90950290/40e06a39-7436-4dba-8c36-25290233ca46" alt="Untitled design (2)" width="400">
 
 ## Features
