@@ -4,6 +4,8 @@ Quick Todo is a simple and intuitive todo list application for managing your tas
 
 <img src="https://github.com/Deadsec19/QuickTodo/assets/90950290/53eccf73-cd99-41f1-9b7a-a14a7b2a8e1e" alt="Untitled design (4)" width="400">
 <img src="https://github.com/Deadsec19/QuickTodo/assets/90950290/40e06a39-7436-4dba-8c36-25290233ca46" alt="Untitled design (2)" width="400">
+![Untitled design (4)](https://github.com/Deadsec19/QuickTodo/assets/90950290/eb1409fc-9a93-452a-89e5-0de9d5ad7b6a)
+![Untitled design (2)](https://github.com/Deadsec19/QuickTodo/assets/90950290/595c8135-a8cc-4d77-90e9-bd08200c86cb)
 
 ## Features
 
