@@ -1,3 +1,8 @@
 {
-    "greeting": "Salut, lume!"
+    "welcomeMessage": "Bine ai venit la Lista ta de Activități!",
+    "startAddingTasksMessage": "Începeți adăugarea de activități aici!",
+    "getOrganizedMessage": "Hai să ne organizăm!",
+    "enterTaskMessage": "Introduceți o nouă activitate",
+    "taskCompleted": "completedTasksPlaceholder din totalTasksPlaceholder sarcini completate",
+    "title": "Listă de Activități Rapide"
 }

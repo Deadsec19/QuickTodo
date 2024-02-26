@@ -1,6 +1,8 @@
 {
-    "welcome": "अपनी टूडू सूची में आपका स्वागत है!",
-    "startAddingTasks": "यहाँ कार्य जोड़ना शुरू करें!",
-    "getOrganized": "चलो संगठित होते हैं!",
-    "enterNewTask": "नया कार्य दर्ज करें"
+    "welcomeMessage": "अपनी टूडू सूची में आपका स्वागत है!",
+    "startAddingTasksMessage": "यहाँ कार्य जोड़ना शुरू करें!",
+    "getOrganizedMessage": "आओ संगठित हों!",
+    "enterTaskMessage": "नया कार्य दर्ज करें",
+    "taskCompleted": "completedTasksPlaceholder कार्यों में से totalTasksPlaceholder पूरे हुए",
+    "title": "त्वरित टूडू"
 }

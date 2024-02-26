@@ -1,3 +1,8 @@
 {
-    "greeting": "હેલો, વર્લ્ડ!"
+    "welcomeMessage": "તમારી ટૂડૂ યાદીમાં આપનું સ્વાગત છે!",
+    "startAddingTasksMessage": "અહીં કામો ઉમેરવાનું શરૂ કરો!",
+    "getOrganizedMessage": "ચલો વ્યવસ્થિત થઇએ!",
+    "enterTaskMessage": "નવું કાર્ય દાખલ કરો",
+    "taskCompleted": "completedTasksPlaceholder કાર્યોમાંથી totalTasksPlaceholder પૂર્ણ થયા",
+    "title": "ત્વરિત ટોડો"
 }

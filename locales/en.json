@@ -1,6 +1,8 @@
 {
-    "welcome": "Welcome to Your Todo List!",
-    "startAddingTasks": "Start Adding Tasks Here!",
-    "getOrganized": "Let's Get Organized!",
-    "enterNewTask": "Enter a new task"
+    "welcomeMessage": "Welcome to Your Todo List!",
+    "startAddingTasksMessage": "Start Adding Tasks Here!",
+    "getOrganizedMessage": "Let's Get Organized!",
+    "enterTaskMessage": "Enter a new task",
+    "taskCompleted": "completedTasksPlaceholder out of totalTasksPlaceholder tasks completed",
+    "title": "Quick Todo"
 }

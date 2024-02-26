@@ -1,31 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Checkbox } from 'react-native-paper';
 import { Audio } from 'expo-av';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LocalizationContext } from './LocalizationContext';
+import i18n from 'i18n-js';
+import { useLocalization } from './LocalizationContext'; // Assuming LocalizationContext.js is in the screens directory
 
-const { t } = React.useContext(LocalizationContext);
-
-// Example usage:
-<>
-  // Example usage:
-  <Text>{t('greeting')}</Text><Text>{t('farewell')}</Text></>
+import InstructionScreen from './InstructionScreen';
 
 
 function HomeScreen() {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: 'Welcome to Your Todo List!', completed: false },
-    { id: 2, title: 'Start Adding Tasks Here!', completed: false },
-    { id: 3, title: "Let's Get Organized!", completed: false },
-  ]);
+  const { t, locale, setLocale } = useLocalization();
+
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    setTasks([
+      { id: 1, title: t('welcomeMessage'), completed: false },
+      { id: 2, title: t('startAddingTasksMessage'), completed: false },
+      { id: 3, title: t('getOrganizedMessage'), completed: false },
+    ]);
+  }, [t]);
+
+
   const [newTask, setNewTask] = useState('');
   const [addSound, setAddSound] = useState(new Audio.Sound());
   const [completeSound, setCompleteSound] = useState(new Audio.Sound());
   const [deleteSound, setDeleteSound] = useState(new Audio.Sound());
   const [uncheckSound, setUncheckSound] = useState(new Audio.Sound());
+  const [buttonSound, setButtonSound] = useState(new Audio.Sound());
+
   const [allTasksCompleted, setAllTasksCompleted] = useState(false);
 
   useEffect(() => {
@@ -55,6 +60,17 @@ function HomeScreen() {
     saveTasks();
   }, [tasks]);
 
+  useEffect(() => {
+    const loadButtonSound = async () => {
+      await buttonSound.loadAsync(require('../assets/button_sound.mp3'));
+    };
+
+    loadButtonSound();
+
+    return () => {
+      buttonSound.unloadAsync();
+    };
+  }, []);
 
 
   useEffect(() => {
@@ -74,6 +90,22 @@ function HomeScreen() {
       uncheckSound.unloadAsync();
     };
   }, []);
+
+
+  const toggleLocale = () => {
+    // Define an array of supported languages
+    const supportedLanguages = ['en', 'es', 'hi', 'ro', 'gu']; // Add more languages as needed
+
+    // Get the index of the current locale in the array
+    const currentIndex = supportedLanguages.indexOf(locale);
+
+    // Calculate the index of the next language in the array
+    const nextIndex = (currentIndex + 1) % supportedLanguages.length;
+
+    // Set the next language as the new locale
+    const newLocale = supportedLanguages[nextIndex];
+    setLocale(newLocale);
+  };
 
   const completedTasks = tasks.filter(task => task.completed).length;
   const totalTasks = tasks.length;
@@ -137,11 +169,68 @@ function HomeScreen() {
     deleteSound.replayAsync();
   };
 
+
+  const App = () => {
+    const [firstTime, setFirstTime] = useState(true);
+
+    useEffect(() => {
+      const checkFirstTime = async () => {
+        try {
+          const value = await AsyncStorage.getItem('firstTime');
+          if (value !== null && value === 'false') {
+            setFirstTime(false);
+          }
+        } catch (error) {
+          console.error('Error checking first time', error);
+        }
+      };
+
+      checkFirstTime();
+    }, []);
+
+    useEffect(() => {
+      const saveFirstTime = async () => {
+        try {
+          await AsyncStorage.setItem('firstTime', 'false');
+        } catch (error) {
+          console.error('Error saving first time', error);
+        }
+      };
+
+      if (firstTime === true) {
+        saveFirstTime();
+      }
+    }, [firstTime]);
+
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {firstTime ? <InstructionScreen /> : <Text>Welcome back!</Text>}
+      </View>
+    );
+  };
+
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Quick Todo</Text>
 
-      <Text style={styles.completedTasksText}>{completedTasks} out of {totalTasks} tasks completed</Text>
+
+      <TouchableOpacity onPress={async () => {
+        await buttonSound.replayAsync();
+        toggleLocale();
+      }} style={styles.languageButton}>
+        <Icon name="language" size={24} color="black" />
+      </TouchableOpacity>
+
+
+
+      <Text style={styles.title}>{t('title')}</Text>
+
+      <Text style={styles.completedTasksText}>
+        {t('taskCompleted')
+          .replace('completedTasksPlaceholder', completedTasks)
+          .replace('totalTasksPlaceholder', totalTasks)}
+      </Text>
+
 
       <View style={styles.progressBar}>
         <View style={{ width: `${progress * 100}%`, backgroundColor: '#CDFAD5', height: 10 }} />
@@ -158,7 +247,7 @@ function HomeScreen() {
           style={styles.input}
           value={newTask}
           onChangeText={setNewTask}
-          placeholder="Enter a new task"
+          placeholder={t('enterTaskMessage')}
           selectionColor="grey" />
         <TouchableOpacity style={styles.addButton} onPress={addTask}>
           <Icon name="plus" size={20} color="black" />
@@ -175,6 +264,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: '#F6FDC3',
   },
+
+  languageButton: {
+    position: 'absolute',
+    top: 10,
+    right: 20,
+    zIndex: 1,
+    marginTop: 20,
+  },
+
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -229,7 +327,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 12,
-    marginBottom: 30,
+    marginBottom: 5,
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 5,

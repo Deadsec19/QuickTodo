@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.devangp084.snack31dc10ed2b4943e18c2fe849621b358c"
     },
     "android": {
       "adaptiveIcon": {
